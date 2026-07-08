@@ -10,6 +10,8 @@ Hide the blank line above tables in Obsidian **Live Preview** mode.
 
 > **Requires Obsidian 1.12.7 or higher.**
 
+> **Domestic users (China):** the source code is also mirrored on Gitee: https://gitee.com/Dablieu/table-gap-remover
+
 ## Problem
 
 In Live Preview, a table (`| ... |`) always renders with an extra blank line above it. That line is clickable and visually distracting.
