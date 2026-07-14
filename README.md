@@ -4,50 +4,35 @@
 
 </div>
 
-# Table Gap Remover
+# Spacing Control
 
-Hide the blank line above tables in Obsidian **Live Preview** mode.
+Fine-tune the spacing (margins) of headings, paragraphs, lists and tables in Obsidian — in both **Live Preview** and **Reading View**.
 
-> **Requires Obsidian 1.12.7 or higher.**
+> **Requires Obsidian 0.15.0 or higher.**
 
-> **Domestic users (China):** the source code is also mirrored on Gitee: https://gitee.com/Dablieu/table-gap-remover
+> **Domestic users (China):** the source code is also mirrored on Gitee: https://gitee.com/Dablieu/obsidian-spacing-control
 
-## Problem
+## Features
 
-In Live Preview, a table (`| ... |`) always renders with an extra blank line above it. That line is clickable and visually distracting.
-
-Standard CSS snippets and inline-style hacks cannot remove it — Obsidian's CodeMirror 6 editor re-renders and overwrites any external style on every frame.
-
-## Solution
-
-This plugin uses the official **CodeMirror 6 Decoration + Theme** API to hide those blank lines as part of the editor's own rendering pipeline. The hidden line is removed from layout but the source markdown is never modified.
-
-- Blank line **above a table** (`|`) → hidden
-- Normal paragraph breaks (empty line between two text blocks) → **kept**
+- **Independent spacing control** — set the top/bottom margin of headings, paragraphs, lists and tables separately.
+- **Hide the gap above tables (Live Preview)** — remove the extra clickable blank line above a table (`| ... |`) in Live Preview. The source markdown is never modified.
+- **Compact table** — column width adapts to content (`table-layout: auto`); can be forced per-note via the `[紧凑表格]` / `[宽松表格]` cssclasses.
+- **Table beautify** — customize border color / width / radius and header background color.
 
 ## Installation
 
 ### From Community Plugins (once approved)
 1. Settings → Community plugins → Browse
-2. Search "Table Gap Remover"
+2. Search "Spacing Control"
 3. Install & enable
 
 ### Manual
-Copy the `table-gap-remover` folder into your vault's `.obsidian/plugins/` directory, then enable it in Settings → Community plugins.
+Copy the `obsidian-spacing-control` folder into your vault's `.obsidian/plugins/` directory, then enable it in Settings → Community plugins.
 
 ## How it works
 
-The plugin registers a CodeMirror 6 `ViewPlugin` that adds a `rhg-gap-line` decoration class to empty lines directly above a table row. An `EditorView.theme` with maximum priority collapses those lines to zero height.
-
-## Demo
-
-Before (Table Gap Remover disabled — the blank line above the table is visible and clickable):
-
-![before](./docs/测试图片-未打开插件.png)
-
-After enabling Table Gap Remover, the gap above the table disappears:
-
-![after](./docs/测试图片-打开插件.png)
+- **Live Preview:** a CodeMirror 6 `ViewPlugin` adds a decoration class to the blank line directly above a table row, and an `EditorView.theme` (max priority) collapses it to zero height. Other spacing is applied via a dynamic `<style>` tag.
+- **Reading View:** a `MutationObserver` scans rendered tables and headings, then sets inline styles to clear/adjust the relevant margins across all wrapper layers.
 
 ## Free & Open Source
 

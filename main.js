@@ -32,7 +32,7 @@ class RHGSettingTab extends PluginSettingTab {
     display() {
         const { containerEl } = this;
         containerEl.empty();
-        containerEl.createEl('h2', { text: 'Table Gap Remover 设置' });
+        containerEl.createEl('h2', { text: 'Spacing Control 设置' });
 
         // ========== 顶部标签栏 ==========
         const nav = containerEl.createDiv({ cls: 'rhg-tab-nav' });

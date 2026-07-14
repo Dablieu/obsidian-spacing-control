@@ -1,2 +1,5 @@
 # Node / build (not used, plugin is plain JS)
 node_modules/
+
+# 打包产物（由 build.js 生成）
+dist/
